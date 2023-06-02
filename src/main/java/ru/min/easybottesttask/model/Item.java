@@ -3,7 +3,10 @@ package ru.min.easybottesttask.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.persistence.MappedSuperclass;
+
 @Data
+@MappedSuperclass
 public abstract class Item {
 
     private Long serialNumber;

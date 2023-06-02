@@ -2,8 +2,10 @@ package ru.min.easybottesttask.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.min.easybottesttask.model.DesktopComputer;
+import org.webjars.NotFoundException;
+import ru.min.easybottesttask.exception.MyValidationException;
 import ru.min.easybottesttask.model.HardDisk;
+import ru.min.easybottesttask.model.enums.HardDiskVolume;
 import ru.min.easybottesttask.repository.HardDiskRepository;
 import ru.min.easybottesttask.service.HardDiskService;
 import ru.min.easybottesttask.service.ValidationService;
@@ -22,7 +24,7 @@ public class HardDiskServiceImpl implements HardDiskService {
         if (service.validate(hardDisk)){
             return repository.save(hardDisk);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Validation error");
         }
     }
 
@@ -38,7 +40,7 @@ public class HardDiskServiceImpl implements HardDiskService {
             hardDiskFromBd.setSerialNumber(hardDisk.getSerialNumber());
             return repository.save(hardDisk);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Error in input data");
         }
     }
 
@@ -49,6 +51,11 @@ public class HardDiskServiceImpl implements HardDiskService {
 
     @Override
     public HardDisk findById(Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Not found"));
+    }
+
+    @Override
+    public List<HardDisk> findAllByVolume(HardDiskVolume hardDiskVolume){
+        return repository.findAllByVolume(hardDiskVolume);
     }
 }

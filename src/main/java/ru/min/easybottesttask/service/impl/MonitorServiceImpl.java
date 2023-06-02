@@ -2,8 +2,11 @@ package ru.min.easybottesttask.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
+import ru.min.easybottesttask.exception.MyValidationException;
 import ru.min.easybottesttask.model.DesktopComputer;
 import ru.min.easybottesttask.model.Monitor;
+import ru.min.easybottesttask.model.enums.MonitorDiagonal;
 import ru.min.easybottesttask.repository.MonitorRepository;
 import ru.min.easybottesttask.service.MonitorService;
 import ru.min.easybottesttask.service.ValidationService;
@@ -22,7 +25,7 @@ public class MonitorServiceImpl implements MonitorService {
         if (service.validate(monitor)){
             return repository.save(monitor);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Validation error");
         }
     }
 
@@ -38,17 +41,22 @@ public class MonitorServiceImpl implements MonitorService {
             monitorFromBd.setSerialNumber(monitor.getSerialNumber());
             return repository.save(monitorFromBd);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Error in input data");
         }
     }
 
     @Override
     public List<Monitor> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Monitor findById(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Not found"));
+    }
+
+    @Override
+    public List<Monitor> findAllByDiagonal(MonitorDiagonal diagonal){
+        return repository.findAllByDiagonal(diagonal);
     }
 }

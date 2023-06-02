@@ -2,7 +2,10 @@ package ru.min.easybottesttask.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
+import ru.min.easybottesttask.exception.MyValidationException;
 import ru.min.easybottesttask.model.DesktopComputer;
+import ru.min.easybottesttask.model.enums.Form;
 import ru.min.easybottesttask.repository.DesktopComputerRepository;
 import ru.min.easybottesttask.service.DesktopComputerService;
 import ru.min.easybottesttask.service.ValidationService;
@@ -21,7 +24,7 @@ public class DesktopComputerServiceImpl implements DesktopComputerService {
         if (service.validate(computer)){
             return repository.save(computer);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Validation error");
         }
     }
 
@@ -37,7 +40,7 @@ public class DesktopComputerServiceImpl implements DesktopComputerService {
             computerFromBd.setSerialNumber(computer.getSerialNumber());
             return repository.save(computerFromBd);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Error in input data");
         }
     }
 
@@ -48,6 +51,11 @@ public class DesktopComputerServiceImpl implements DesktopComputerService {
 
     @Override
     public DesktopComputer findById(Long id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Not found"));
+    }
+
+    @Override
+    public List<DesktopComputer> findAllByForm(Form form){
+        return repository.findAllByForm(form);
     }
 }

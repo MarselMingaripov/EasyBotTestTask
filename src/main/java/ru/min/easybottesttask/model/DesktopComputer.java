@@ -13,16 +13,13 @@ public class DesktopComputer extends Item{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private Form form;
 
-    public DesktopComputer(Long serialNumber, String producer, int price, int stockCount, Long id, Form form) {
+    public DesktopComputer(Long id, Form form, Long serialNumber, String producer, int price, int stockCount) {
         super(serialNumber, producer, price, stockCount);
         this.id = id;
         this.form = form;
-    }
-
-    public DesktopComputer(Long serialNumber, String producer, int price, int stockCount) {
-        super(serialNumber, producer, price, stockCount);
     }
 
     public DesktopComputer() {

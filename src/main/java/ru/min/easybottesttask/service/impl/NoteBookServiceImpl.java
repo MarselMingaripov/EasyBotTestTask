@@ -2,8 +2,11 @@ package ru.min.easybottesttask.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
+import ru.min.easybottesttask.exception.MyValidationException;
 import ru.min.easybottesttask.model.DesktopComputer;
 import ru.min.easybottesttask.model.NoteBook;
+import ru.min.easybottesttask.model.enums.ScreenSize;
 import ru.min.easybottesttask.repository.NoteBookRepository;
 import ru.min.easybottesttask.service.NoteBookService;
 import ru.min.easybottesttask.service.ValidationService;
@@ -19,17 +22,17 @@ public class NoteBookServiceImpl implements NoteBookService {
 
     @Override
     public NoteBook addNoteBook(NoteBook noteBook) {
-        if (service.validate(noteBook)){
+        if (service.validate(noteBook)) {
             return repository.save(noteBook);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Validation error");
         }
     }
 
     @Override
     public NoteBook updateNoteBook(Long id, NoteBook noteBook) {
         if (service.validate(noteBook) &&
-                repository.findById(id).isPresent()){
+                repository.findById(id).isPresent()) {
             NoteBook noteBookFromBd = repository.findById(id).get();
             noteBookFromBd.setSize(noteBook.getSize());
             noteBookFromBd.setPrice(noteBook.getPrice());
@@ -38,17 +41,22 @@ public class NoteBookServiceImpl implements NoteBookService {
             noteBookFromBd.setSerialNumber(noteBook.getSerialNumber());
             return repository.save(noteBookFromBd);
         } else {
-            throw new IllegalArgumentException();
+            throw new MyValidationException("Error in input data");
         }
     }
 
     @Override
     public List<NoteBook> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public NoteBook findById(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Not found"));
+    }
+
+    @Override
+    public List<NoteBook> findAllBySize(ScreenSize screenSize){
+        return repository.findAllBySize(screenSize);
     }
 }
