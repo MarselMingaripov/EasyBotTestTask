@@ -9,5 +9,4 @@
 
 Можно запустить из IDE, предварительно скопировав репозиторий https://github.com/MarselMingaripov/EasyBotTestTask
 + посмотреть документацию по реализованным API можно по ссылке http://localhost:8080/swagger-ui/index.html#/
-+ 
 
