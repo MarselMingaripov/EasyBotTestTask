@@ -1,4 +1,4 @@
-# Тестовое задание для комапании EasyBot
+# Тестовое задание для компании EasyBot
  
 Текст тестового находится [здесь](https://www.dropbox.com/s/zpvfea8nz3wqtit/java_test.pdf?dl=0)
 
