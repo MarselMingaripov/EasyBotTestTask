@@ -1,11 +1,13 @@
 package ru.min.easybottesttask.model;
 
+import lombok.Data;
 import ru.min.easybottesttask.model.enums.MonitorDiagonal;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "monitor")
+@Data
 public class Monitor extends Item{
 
     @Id

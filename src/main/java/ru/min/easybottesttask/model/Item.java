@@ -1,7 +1,9 @@
 package ru.min.easybottesttask.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 public abstract class Item {
 
     private Long serialNumber;

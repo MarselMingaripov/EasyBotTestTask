@@ -1,11 +1,13 @@
 package ru.min.easybottesttask.model;
 
+import lombok.Data;
 import ru.min.easybottesttask.model.enums.Form;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "desktop_computer")
+@Data
 public class DesktopComputer extends Item{
 
     @Id

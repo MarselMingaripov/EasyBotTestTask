@@ -1,11 +1,13 @@
 package ru.min.easybottesttask.model;
 
+import lombok.Data;
 import ru.min.easybottesttask.model.enums.HardDiskVolume;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "desktop_computer")
+@Data
 public class HardDisk extends Item{
 
     @Id

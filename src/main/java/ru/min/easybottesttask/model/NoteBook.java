@@ -1,11 +1,13 @@
 package ru.min.easybottesttask.model;
 
+import lombok.Data;
 import ru.min.easybottesttask.model.enums.ScreenSize;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "notebook")
+@Data
 public class NoteBook extends Item{
 
     @Id
