@@ -16,7 +16,7 @@ public class NoteBook extends Item{
     @Enumerated(EnumType.STRING)
     private ScreenSize size;
 
-    public NoteBook(Long serialNumber, String producer, int price, int stockCount, Long id, ScreenSize size) {
+    public NoteBook(Long id, ScreenSize size, Long serialNumber, String producer, int price, int stockCount) {
         super(serialNumber, producer, price, stockCount);
         this.id = id;
         this.size = size;

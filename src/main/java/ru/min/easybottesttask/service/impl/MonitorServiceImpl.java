@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import ru.min.easybottesttask.exception.MyValidationException;
-import ru.min.easybottesttask.model.DesktopComputer;
 import ru.min.easybottesttask.model.Monitor;
 import ru.min.easybottesttask.model.enums.MonitorDiagonal;
 import ru.min.easybottesttask.repository.MonitorRepository;

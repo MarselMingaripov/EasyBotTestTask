@@ -16,7 +16,7 @@ public class HardDisk extends Item{
     @Enumerated(EnumType.STRING)
     private HardDiskVolume volume;
 
-    public HardDisk(Long serialNumber, String producer, int price, int stockCount, Long id, HardDiskVolume volume) {
+    public HardDisk(Long id, HardDiskVolume volume, Long serialNumber, String producer, int price, int stockCount) {
         super(serialNumber, producer, price, stockCount);
         this.id = id;
         this.volume = volume;

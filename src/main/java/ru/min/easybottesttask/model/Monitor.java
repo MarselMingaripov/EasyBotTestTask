@@ -16,7 +16,7 @@ public class Monitor extends Item{
     @Enumerated(EnumType.STRING)
     private MonitorDiagonal diagonal;
 
-    public Monitor(Long serialNumber, String producer, int price, int stockCount, Long id, MonitorDiagonal diagonal) {
+    public Monitor(Long id, MonitorDiagonal diagonal, Long serialNumber, String producer, int price, int stockCount) {
         super(serialNumber, producer, price, stockCount);
         this.id = id;
         this.diagonal = diagonal;
